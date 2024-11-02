@@ -37,14 +37,17 @@ jobs:
           python-version: '3.9'
 
       - name: Instalar Docker
-        uses: docker/setup-buildx-action@v2
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io
 
       - name: Buildar imagem Docker
-        run: docker build -t app ./app
+        run: docker build -t meu-app ./app
 
       - name: Rodar container
         run: |
           docker run -d -p 5000:5000 \
+            --name meu-app-container \
             -e DB_HOST=mysql \
             -e DB_USER=user \
             -e DB_PASSWORD=userpass \
@@ -52,4 +55,4 @@ jobs:
             meu-app
 
       - name: Derrubar container
-        run: docker stop $(docker ps -q) && docker rm $(docker ps -a -q)
+        run: docker stop meu-app-container && docker rm meu-app-container
