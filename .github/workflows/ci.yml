@@ -42,7 +42,7 @@ jobs:
           sudo sh get-docker.sh
 
       - name: Buildar imagem Docker
-        run: docker build -t meu-app ./app
+        run: docker build -t app ./app
 
       - name: Rodar container
         run: |
@@ -55,4 +55,4 @@ jobs:
             meu-app
 
       - name: Derrubar container
-        run: docker stop meu-app-container && docker rm meu-app-container
+        run: docker stop container && docker rm container
