@@ -47,7 +47,7 @@ jobs:
       - name: Rodar container
         run: |
           docker run -d -p 5000:5000 \
-            --name meu-app-container \
+            --name container \
             -e DB_HOST=mysql \
             -e DB_USER=user \
             -e DB_PASSWORD=userpass \
